@@ -1,0 +1,162 @@
+task 1
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введіть три цілих числа:");
+        int num1 = int.Parse(Console.ReadLine());
+        int num2 = int.Parse(Console.ReadLine());
+        int num3 = int.Parse(Console.ReadLine());
+
+        Console.WriteLine($"Числа в інтервалі [1, 34]:");
+
+        if (IsInInterval(num1))
+            Console.WriteLine(num1);
+
+        if (IsInInterval(num2))
+            Console.WriteLine(num2);
+
+        if (IsInInterval(num3))
+            Console.WriteLine(num3);
+    }
+
+    static bool IsInInterval(int num)
+    {
+        return num >= 1 && num <= 34;
+    }
+}
+
+
+task2 
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введіть три сторони трикутника:");
+        double side1 = double.Parse(Console.ReadLine());
+        double side2 = double.Parse(Console.ReadLine());
+        double side3 = double.Parse(Console.ReadLine());
+
+        if (IsTriangle(side1, side2, side3))
+        {
+            double perimeter = side1 + side2 + side3;
+            double s = perimeter / 2;
+            double area = Math.Sqrt(s * (s - side1) * (s - side2) * (s - side3));
+
+            Console.WriteLine($"Периметр: {perimeter}");
+            Console.WriteLine($"Площа: {area}");
+
+            TriangleType(side1, side2, side3);
+        }
+        else
+        {
+            Console.WriteLine("Такий трикутник не існує.");
+        }
+    }
+
+    static bool IsTriangle(double a, double b, double c)
+    {
+        return a + b > c && a + c > b && b + c > a;
+    }
+
+    static void TriangleType(double a, double b, double c)
+    {
+        if (a == b && b == c)
+            Console.WriteLine("Рівносторонній трикутник.");
+        else if (a == b || b == c || a == c)
+            Console.WriteLine("Рівнобедрений трикутник.");
+        else
+            Console.WriteLine("Звичайний трикутник.");
+    }
+}
+
+task 3
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] X = new int[34];
+        Random random = new Random();
+
+        Console.WriteLine("Згенерований масив:");
+
+        for (int i = 0; i < X.Length; i++)
+        {
+            X[i] = random.Next(1, 101);  
+            Console.Write($"{X[i]} ");
+        }
+
+        int min = X[0];
+        int max = X[0];
+
+        for (int i = 1; i < X.Length; i++)
+        {
+            if (X[i] < min)
+                min = X[i];
+
+            if (X[i] > max)
+                max = X[i];
+        }
+
+        Console.WriteLine($"\nМінімальне значення: {min}");
+        Console.WriteLine($"Максимальне значення: {max}");
+    }
+}
+
+task 4
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] X = new int[34];
+        Random random = new Random();
+
+        Console.WriteLine("Згенерований масив X:");
+
+        for (int i = 0; i < X.Length; i++)
+        {
+            X[i] = random.Next(-50, 51);  
+            Console.Write($"{X[i]} ");
+        }
+
+        Console.WriteLine("\nВведіть число M:");
+        int M = int.Parse(Console.ReadLine());
+
+        int[] Y = new int[X.Length];
+        int yIndex = 0;
+
+        foreach (var element in X)
+        {
+            if (Math.Abs(element) > M)
+            {
+                Y[yIndex] = element;
+                yIndex++;
+            }
+        }
+
+        Console.WriteLine($"Число M: {M}");
+        Console.WriteLine("Заданий масив X:");
+
+        foreach (var element in X)
+        {
+            Console.Write($"{element} ");
+        }
+
+        Console.WriteLine("\nОтриманий масив Y:");
+
+        for (int i = 0; i < yIndex; i++)
+        {
+            Console.Write($"{Y[i]} ");
+        }
+    }
+}
+
+
